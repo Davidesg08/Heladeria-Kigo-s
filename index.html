@@ -8,18 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ===== VARIABLES ===== */
+    /* ===== VARIABLES — paleta del logo Kigo's ===== */
     :root {
-      --cream:     #fdf6ee;
-      --warm:      #f5e6d0;
-      --blush:     #e8b4a0;
-      --coral:     #d4735a;
-      --berry:     #8b3a52;
-      --mint:      #a8c5b5;
-      --mint-dark: #5e9982;
-      --chocolate: #3d1f10;
-      --text:      #2a1a0e;
-      --text-light:#7a5a48;
+      --cream:     #e8f4f2;        /* teal muy claro, casi blanco */
+      --warm:      #cce7e3;        /* teal suave */
+      --blush:     #9dd0c9;        /* teal medio */
+      --coral:     #d94f3d;        /* rojo logo */
+      --berry:     #a83020;        /* rojo oscuro */
+      --mint:      #7ab8b0;        /* teal principal del logo */
+      --mint-dark: #4e9890;        /* teal oscuro */
+      --chocolate: #1c3330;        /* verde muy oscuro para footer */
+      --text:      #0f2422;        /* casi negro verdoso */
+      --text-light:#3d706a;        /* teal grisáceo */
       --white:     #ffffff;
     }
 
@@ -53,12 +53,12 @@
       justify-content: space-between;
       padding: 0 2.5rem;
       height: 64px;
-      background: rgba(253, 246, 238, 0.88);
+      background: rgba(232, 244, 242, 0.88);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212, 115, 90, 0.15);
+      border-bottom: 1px solid rgba(122, 184, 176, 0.25);
       transition: box-shadow .3s;
     }
-    nav.scrolled { box-shadow: 0 4px 32px rgba(61,31,16,.08); }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(15,36,34,.08); }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
@@ -132,7 +132,7 @@
       justify-content: center;
       text-align: center;
       padding: 7rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 60% at 50% 30%, #f9e0cd 0%, var(--cream) 70%);
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, #b8ddd9 0%, var(--cream) 70%);
       position: relative;
       overflow: hidden;
     }
@@ -146,13 +146,14 @@
     }
     #inicio::before {
       width: 500px; height: 500px;
-      background: var(--blush);
+      background: var(--mint);
       top: -100px; right: -120px;
     }
     #inicio::after {
       width: 380px; height: 380px;
-      background: var(--mint);
+      background: var(--coral);
       bottom: -80px; left: -100px;
+      opacity: .15;
     }
 
     .hero-eyebrow {
@@ -206,12 +207,12 @@
       font-weight: 500;
       text-decoration: none;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 6px 24px rgba(139,58,82,.25);
+      box-shadow: 0 6px 24px rgba(168,48,32,.25);
     }
     .btn-primary:hover {
       background: var(--coral);
       transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(212,115,90,.35);
+      box-shadow: 0 10px 32px rgba(217,79,61,.35);
     }
 
     .btn-secondary {
@@ -253,7 +254,7 @@
 
     /* ===== PRÓXIMO AVISO ===== */
     .pronto-banner {
-      background: var(--berry);
+      background: var(--mint-dark);
       color: var(--white);
       text-align: center;
       padding: .7rem 1.5rem;
@@ -263,7 +264,7 @@
       z-index: 10;
     }
     .pronto-banner a {
-      color: var(--blush);
+      color: var(--cream);
       text-decoration: none;
       font-weight: 500;
       margin-left: .3rem;
@@ -343,13 +344,13 @@
       padding: .75rem 1rem;
       background: var(--white);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(61,31,16,.05);
+      box-shadow: 0 2px 8px rgba(15,36,34,.06);
       transition: transform .2s, box-shadow .2s, background .2s;
       cursor: default;
     }
     .sabor-chip:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(61,31,16,.1);
+      box-shadow: 0 6px 20px rgba(15,36,34,.1);
       background: var(--cream);
     }
     .sabor-emoji { font-size: 1.3rem; flex-shrink: 0; }
@@ -369,7 +370,7 @@
       border-radius: 10px;
       transition: background .2s;
     }
-    .menu-item:hover { background: rgba(212,115,90,.06); }
+    .menu-item:hover { background: rgba(122,184,176,.1); }
     .menu-item-info { flex: 1; }
     .menu-item-name {
       font-weight: 500;
@@ -393,7 +394,7 @@
 
     /* ===== ABOUT STRIP ===== */
     #nosotros {
-      background: var(--berry);
+      background: var(--mint);
       color: var(--white);
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -412,7 +413,7 @@
       font-weight: 500;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--blush);
+      color: var(--cream);
       margin-bottom: 1rem;
     }
     .about-title {
@@ -422,12 +423,13 @@
       line-height: 1.1;
       margin-bottom: 1.2rem;
       letter-spacing: -0.02em;
+      color: var(--white);
     }
-    .about-title em { color: var(--blush); font-style: italic; }
+    .about-title em { color: var(--cream); font-style: italic; }
     .about-text {
       font-size: .95rem;
       line-height: 1.75;
-      color: rgba(255,255,255,.78);
+      color: rgba(255,255,255,.85);
       max-width: 400px;
       margin-bottom: 1.5rem;
     }
@@ -437,21 +439,21 @@
       gap: .5rem;
       padding: .65rem 1.4rem;
       border-radius: 100px;
-      background: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.18);
       color: var(--white);
       font-size: .85rem;
       font-weight: 500;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,.25);
+      border: 1px solid rgba(255,255,255,.35);
       transition: background .2s, transform .15s;
       width: fit-content;
     }
     .about-bar-link:hover {
-      background: rgba(255,255,255,.2);
+      background: rgba(255,255,255,.28);
       transform: translateY(-1px);
     }
     .about-visual {
-      background: linear-gradient(135deg, #c26b5a 0%, #8b3a52 50%, #5c2a3a 100%);
+      background: linear-gradient(135deg, var(--coral) 0%, var(--berry) 50%, #7a1f10 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -463,7 +465,7 @@
       content: '';
       position: absolute;
       width: 300px; height: 300px;
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.06);
       border-radius: 50%;
       top: -80px; right: -80px;
     }
@@ -483,10 +485,10 @@
       padding: 2rem 1.5rem;
       border-radius: 20px;
       background: var(--white);
-      box-shadow: 0 2px 12px rgba(61,31,16,.05);
+      box-shadow: 0 2px 12px rgba(15,36,34,.06);
       transition: transform .3s, box-shadow .3s;
     }
-    .feature-item:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(61,31,16,.1); }
+    .feature-item:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(15,36,34,.1); }
     .feature-icon { font-size: 2.4rem; margin-bottom: 1rem; }
     .feature-title {
       font-family: 'Playfair Display', serif;
@@ -500,7 +502,7 @@
     /* ===== CONTACTO ===== */
     #contacto {
       background: var(--cream);
-      border-top: 1px solid rgba(212,115,90,.15);
+      border-top: 1px solid rgba(122,184,176,.25);
     }
     .contacto-inner {
       max-width: 860px;
@@ -552,7 +554,7 @@
     .contacto-map {
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(212,115,90,.2);
+      box-shadow: 0 4px 24px rgba(122,184,176,.3);
       min-height: 280px;
       background: var(--warm);
     }
@@ -568,7 +570,7 @@
       justify-content: center;
       gap: .4rem;
       padding: .7rem;
-      background: var(--berry);
+      background: var(--mint-dark);
       color: var(--white);
       text-decoration: none;
       font-size: .8rem;
@@ -593,7 +595,7 @@
       padding: .45rem 1rem;
       border-radius: 100px;
       background: var(--warm);
-      color: var(--berry);
+      color: var(--mint-dark);
       text-decoration: none;
       font-size: .8rem;
       font-weight: 500;
@@ -613,7 +615,7 @@
     }
     footer strong { color: rgba(255,255,255,.8); }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
-    footer a:hover { color: var(--blush); }
+    footer a:hover { color: var(--cream); }
 
     /* ===== WHATSAPP FAB ===== */
     .whatsapp-fab {
@@ -665,8 +667,12 @@
   <!-- WHATSAPP FAB -->
   <a href="https://wa.me/34639729550?text=Hola,%20quería%20consultar%20algo%20sobre%20la%20Heladería%20Kigo´s" class="whatsapp-fab" target="_blank" title="Escríbenos por WhatsApp">💬</a>
 
+  <!-- BANNER PRÓXIMA APERTURA -->
+  <div class="pronto-banner">
+    ✨ ¡Próxima apertura en Villafranca de los Caballeros! — ¿Conoces nuestro bar?
+    <a href="http://bar-kigos.netlify.app/" target="_blank">Visita Bar Kigo's →</a>
+  </div>
 
- 
   <!-- NAV -->
   <nav id="navbar">
     <a href="#inicio" class="nav-logo">Heladería <span>Kigo's</span></a>
