@@ -8,647 +8,122 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ===== VARIABLES — paleta del logo Kigo's ===== */
     :root {
-      --cream:     #e8f4f2;        /* teal muy claro, casi blanco */
-      --warm:      #cce7e3;        /* teal suave */
-      --blush:     #9dd0c9;        /* teal medio */
-      --coral:     #d94f3d;        /* rojo logo */
-      --berry:     #a83020;        /* rojo oscuro */
-      --mint:      #7ab8b0;        /* teal principal del logo */
-      --mint-dark: #4e9890;        /* teal oscuro */
-      --chocolate: #1c3330;        /* verde muy oscuro para footer */
-      --text:      #0f2422;        /* casi negro verdoso */
-      --text-light:#3d706a;        /* teal grisáceo */
+      --cream:     #e8f4f2;
+      --warm:      #cce7e3;
+      --blush:     #9dd0c9;
+      --coral:     #E11D22;        /* rojo principal */
+      --berry:     #E11D22;        /* igual que coral — mismo rojo en todos los textos */
+      --mint:      #7ab8b0;
+      --mint-dark: #4e9890;
+      --chocolate: #1c3330;
+      --text:      #0f2422;
+      --text-light:#3d706a;
       --white:     #ffffff;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: .4;
-    }
-
-    /* ===== NAVBAR ===== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 64px;
-      background: rgba(232, 244, 242, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(122, 184, 176, 0.25);
-      transition: box-shadow .3s;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: .4; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(232, 244, 242, 0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(122, 184, 176, 0.25); transition: box-shadow .3s; }
     nav.scrolled { box-shadow: 0 4px 32px rgba(15,36,34,.08); }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: var(--berry);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 900; color: var(--berry); letter-spacing: -0.02em; text-decoration: none; }
     .nav-logo span { color: var(--coral); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-size: .85rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      position: relative;
-      transition: color .2s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px; left: 0;
-      width: 0; height: 2px;
-      background: var(--coral);
-      transition: width .25s;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: .85rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-light); position: relative; transition: color .2s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--coral); transition: width .25s; }
     .nav-links a:hover { color: var(--coral); }
     .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      background: var(--coral);
-      color: var(--white) !important;
-      padding: .45rem 1.2rem;
-      border-radius: 100px;
-      transition: background .2s, transform .15s !important;
-    }
+    .nav-cta { background: var(--coral); color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 100px; transition: background .2s, transform .15s !important; }
     .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--berry) !important; transform: translateY(-1px); }
-
-    .nav-burger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: .3rem;
-    }
-    .nav-burger span {
-      display: block;
-      width: 24px; height: 2px;
-      background: var(--berry);
-      border-radius: 2px;
-      transition: .3s;
-    }
-
-    /* ===== HERO ===== */
-    #inicio {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 7rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 60% at 50% 30%, #b8ddd9 0%, var(--cream) 70%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    #inicio::before, #inicio::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: .35;
-    }
-    #inicio::before {
-      width: 500px; height: 500px;
-      background: var(--mint);
-      top: -100px; right: -120px;
-    }
-    #inicio::after {
-      width: 380px; height: 380px;
-      background: var(--coral);
-      bottom: -80px; left: -100px;
-      opacity: .15;
-    }
-
-    .hero-eyebrow {
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--coral);
-      margin-bottom: 1.2rem;
-      animation: fadeUp .7s ease both;
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      line-height: 1.0;
-      color: var(--berry);
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-      animation: fadeUp .7s .1s ease both;
-    }
+    .nav-cta:hover { background: #b01519 !important; transform: translateY(-1px); }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: .3rem; }
+    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--berry); border-radius: 2px; transition: .3s; }
+    #inicio { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 4rem; background: radial-gradient(ellipse 80% 60% at 50% 30%, #b8ddd9 0%, var(--cream) 70%); position: relative; overflow: hidden; }
+    #inicio::before, #inicio::after { content: ''; position: absolute; border-radius: 50%; filter: blur(60px); opacity: .35; }
+    #inicio::before { width: 500px; height: 500px; background: var(--mint); top: -100px; right: -120px; }
+    #inicio::after { width: 380px; height: 380px; background: var(--coral); bottom: -80px; left: -100px; opacity: .15; }
+    .hero-eyebrow { font-size: .75rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--coral); margin-bottom: 1.2rem; animation: fadeUp .7s ease both; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; line-height: 1.0; color: var(--berry); letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeUp .7s .1s ease both; }
     .hero-title em { font-style: italic; color: var(--coral); }
-
-    .hero-sub {
-      font-size: clamp(.95rem, 2vw, 1.15rem);
-      color: var(--text-light);
-      max-width: 480px;
-      line-height: 1.65;
-      margin-bottom: 2.5rem;
-      animation: fadeUp .7s .2s ease both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp .7s .3s ease both;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .8rem 2rem;
-      border-radius: 100px;
-      background: var(--berry);
-      color: var(--white);
-      font-size: .9rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 6px 24px rgba(168,48,32,.25);
-    }
-    .btn-primary:hover {
-      background: var(--coral);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(217,79,61,.35);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .8rem 2rem;
-      border-radius: 100px;
-      background: transparent;
-      color: var(--berry);
-      font-size: .9rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1.5px solid var(--blush);
-      transition: border-color .2s, background .2s, transform .15s;
-    }
-    .btn-secondary:hover {
-      border-color: var(--coral);
-      background: var(--warm);
-      transform: translateY(-2px);
-    }
-
-    .hero-deco {
-      position: absolute;
-      font-size: 5rem;
-      opacity: .08;
-      pointer-events: none;
-      animation: float 6s ease-in-out infinite;
-    }
+    .hero-sub { font-size: clamp(.95rem, 2vw, 1.15rem); color: var(--text-light); max-width: 480px; line-height: 1.65; margin-bottom: 2.5rem; animation: fadeUp .7s .2s ease both; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp .7s .3s ease both; }
+    .btn-primary { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 2rem; border-radius: 100px; background: var(--coral); color: var(--white); font-size: .9rem; font-weight: 500; text-decoration: none; transition: background .2s, transform .15s, box-shadow .2s; box-shadow: 0 6px 24px rgba(225,29,34,.25); }
+    .btn-primary:hover { background: #b01519; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(225,29,34,.35); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 2rem; border-radius: 100px; background: transparent; color: var(--berry); font-size: .9rem; font-weight: 500; text-decoration: none; border: 1.5px solid var(--blush); transition: border-color .2s, background .2s, transform .15s; }
+    .btn-secondary:hover { border-color: var(--coral); background: var(--warm); transform: translateY(-2px); }
+    .hero-deco { position: absolute; font-size: 5rem; opacity: .08; pointer-events: none; animation: float 6s ease-in-out infinite; }
     .hero-deco:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
     .hero-deco:nth-child(2) { top: 25%; right: 10%; animation-delay: -2s; font-size: 3rem; }
     .hero-deco:nth-child(3) { bottom: 20%; left: 15%; animation-delay: -4s; font-size: 4rem; }
     .hero-deco:nth-child(4) { bottom: 30%; right: 8%; animation-delay: -1s; font-size: 6rem; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50%       { transform: translateY(-18px) rotate(5deg); }
-    }
-
-    /* ===== PRÓXIMO AVISO ===== */
-    .pronto-banner {
-      background: var(--mint-dark);
-      color: var(--white);
-      text-align: center;
-      padding: .7rem 1.5rem;
-      font-size: .82rem;
-      letter-spacing: .06em;
-      position: relative;
-      z-index: 10;
-    }
-    .pronto-banner a {
-      color: var(--cream);
-      text-decoration: none;
-      font-weight: 500;
-      margin-left: .3rem;
-    }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(5deg); } }
+    .pronto-banner { background: var(--mint-dark); color: var(--white); text-align: center; padding: .7rem 1.5rem; font-size: .82rem; letter-spacing: .06em; position: relative; z-index: 10; }
+    .pronto-banner a { color: var(--cream); text-decoration: none; font-weight: 500; margin-left: .3rem; }
     .pronto-banner a:hover { text-decoration: underline; }
-
-    /* ===== SECTION SHARED ===== */
     section { padding: 6rem 2rem; }
     .section-header { text-align: center; margin-bottom: 3.5rem; }
-    .section-eyebrow {
-      display: inline-block;
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--coral);
-      margin-bottom: .8rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      color: var(--berry);
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-    }
+    .section-eyebrow { display: inline-block; font-size: .72rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--coral); margin-bottom: .8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--berry); letter-spacing: -0.025em; line-height: 1.1; }
     .section-title em { font-style: italic; color: var(--coral); }
-    .section-desc {
-      margin-top: .8rem;
-      font-size: .95rem;
-      color: var(--text-light);
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    /* ===== CARTA / MENU ===== */
-    #carta {
-      background: var(--warm);
-      position: relative;
-    }
-    #carta::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--mint), var(--coral), var(--berry));
-    }
-
-    /* ===== MENU SECTIONS ===== */
+    .section-desc { margin-top: .8rem; font-size: .95rem; color: var(--text-light); max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    #carta { background: var(--warm); position: relative; }
+    #carta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--mint), var(--coral), #b01519); }
     .menu-section { max-width: 860px; margin: 3rem auto 0; }
-    .menu-section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--berry);
-      margin-bottom: 1.2rem;
-      padding-bottom: .6rem;
-      border-bottom: 2px solid var(--blush);
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-
-    /* ===== SABORES GRID ===== */
-    .sabores-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: .6rem;
-    }
-
-    .sabor-chip {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      padding: .75rem 1rem;
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(15,36,34,.06);
-      transition: transform .2s, box-shadow .2s, background .2s;
-      cursor: default;
-    }
-    .sabor-chip:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(15,36,34,.1);
-      background: var(--cream);
-    }
+    .menu-section-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--berry); margin-bottom: 1.2rem; padding-bottom: .6rem; border-bottom: 2px solid var(--blush); display: flex; align-items: center; gap: .6rem; }
+    .sabores-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .6rem; }
+    .sabor-chip { display: flex; align-items: center; gap: .6rem; padding: .75rem 1rem; background: var(--white); border-radius: 12px; box-shadow: 0 2px 8px rgba(15,36,34,.06); transition: transform .2s, box-shadow .2s, background .2s; cursor: default; }
+    .sabor-chip:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,36,34,.1); background: var(--cream); }
     .sabor-emoji { font-size: 1.3rem; flex-shrink: 0; }
-    .sabor-name {
-      font-size: .9rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.2;
-    }
-
+    .sabor-name { font-size: .9rem; font-weight: 500; color: var(--text); line-height: 1.2; }
     .menu-items { display: flex; flex-direction: column; gap: .1rem; }
-    .menu-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .9rem 1rem;
-      border-radius: 10px;
-      transition: background .2s;
-    }
+    .menu-item { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1rem; border-radius: 10px; transition: background .2s; }
     .menu-item:hover { background: rgba(122,184,176,.1); }
     .menu-item-info { flex: 1; }
-    .menu-item-name {
-      font-weight: 500;
-      font-size: .95rem;
-      color: var(--text);
-    }
-    .menu-item-desc {
-      font-size: .8rem;
-      color: var(--text-light);
-      margin-top: .2rem;
-      line-height: 1.4;
-    }
-    .menu-item-price {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--coral);
-      white-space: nowrap;
-      margin-left: 1.5rem;
-    }
-
-    /* ===== ABOUT STRIP ===== */
-    #nosotros {
-      background: var(--mint);
-      color: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 0;
-      min-height: 420px;
-    }
-    .about-content {
-      padding: 5rem 4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .about-eyebrow {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--cream);
-      margin-bottom: 1rem;
-    }
-    .about-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.02em;
-      color: var(--white);
-    }
+    .menu-item-name { font-weight: 500; font-size: .95rem; color: var(--text); }
+    .menu-item-desc { font-size: .8rem; color: var(--text-light); margin-top: .2rem; line-height: 1.4; }
+    .menu-item-price { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: var(--coral); white-space: nowrap; margin-left: 1.5rem; }
+    #nosotros { background: var(--mint); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; min-height: 420px; }
+    .about-content { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .about-eyebrow { font-size: .72rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--cream); margin-bottom: 1rem; }
+    .about-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em; color: var(--white); }
     .about-title em { color: var(--cream); font-style: italic; }
-    .about-text {
-      font-size: .95rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,.85);
-      max-width: 400px;
-      margin-bottom: 1.5rem;
-    }
-    .about-bar-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .65rem 1.4rem;
-      border-radius: 100px;
-      background: rgba(255,255,255,.18);
-      color: var(--white);
-      font-size: .85rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,.35);
-      transition: background .2s, transform .15s;
-      width: fit-content;
-    }
-    .about-bar-link:hover {
-      background: rgba(255,255,255,.28);
-      transform: translateY(-1px);
-    }
-    .about-visual {
-      background: linear-gradient(135deg, var(--coral) 0%, var(--berry) 50%, #7a1f10 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-visual::before {
-      content: '';
-      position: absolute;
-      width: 300px; height: 300px;
-      background: rgba(255,255,255,.06);
-      border-radius: 50%;
-      top: -80px; right: -80px;
-    }
+    .about-text { font-size: .95rem; line-height: 1.75; color: rgba(255,255,255,.85); max-width: 400px; margin-bottom: 1.5rem; }
+    .about-bar-link { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1.4rem; border-radius: 100px; background: rgba(255,255,255,.18); color: var(--white); font-size: .85rem; font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,.35); transition: background .2s, transform .15s; width: fit-content; }
+    .about-bar-link:hover { background: rgba(255,255,255,.28); transform: translateY(-1px); }
+    .about-visual { background: linear-gradient(135deg, #E11D22 0%, #c0191e 50%, #901318 100%); display: flex; align-items: center; justify-content: center; font-size: 8rem; position: relative; overflow: hidden; }
+    .about-visual::before { content: ''; position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,.06); border-radius: 50%; top: -80px; right: -80px; }
     .about-visual span { position: relative; z-index: 1; filter: drop-shadow(0 8px 24px rgba(0,0,0,.2)); }
-
-    /* ===== FEATURES / PILLARES ===== */
     #features { background: var(--cream); }
-    .features-grid {
-      max-width: 960px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-    }
-    .feature-item {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      border-radius: 20px;
-      background: var(--white);
-      box-shadow: 0 2px 12px rgba(15,36,34,.06);
-      transition: transform .3s, box-shadow .3s;
-    }
+    .features-grid { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .feature-item { text-align: center; padding: 2rem 1.5rem; border-radius: 20px; background: var(--white); box-shadow: 0 2px 12px rgba(15,36,34,.06); transition: transform .3s, box-shadow .3s; }
     .feature-item:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(15,36,34,.1); }
     .feature-icon { font-size: 2.4rem; margin-bottom: 1rem; }
-    .feature-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--berry);
-      margin-bottom: .5rem;
-    }
+    .feature-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--berry); margin-bottom: .5rem; }
     .feature-desc { font-size: .85rem; color: var(--text-light); line-height: 1.65; }
-
-    /* ===== CONTACTO ===== */
-    #contacto {
-      background: var(--cream);
-      border-top: 1px solid rgba(122,184,176,.25);
-    }
-    .contacto-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .contacto-info h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--berry);
-      margin-bottom: 1.5rem;
-    }
-    .info-row {
-      display: flex;
-      align-items: flex-start;
-      gap: .85rem;
-      margin-bottom: 1.1rem;
-    }
-    .info-icon {
-      font-size: 1.2rem;
-      width: 2.2rem;
-      height: 2.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--warm);
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-    .info-label {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--coral);
-      margin-bottom: .15rem;
-    }
-    .info-value {
-      font-size: .9rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    /* ===== MAPA EMBED ===== */
-    .contacto-map {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(122,184,176,.3);
-      min-height: 280px;
-      background: var(--warm);
-    }
-    .contacto-map iframe {
-      width: 100%;
-      height: 280px;
-      border: none;
-      display: block;
-    }
-    .map-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .4rem;
-      padding: .7rem;
-      background: var(--mint-dark);
-      color: var(--white);
-      text-decoration: none;
-      font-size: .8rem;
-      font-weight: 500;
-      letter-spacing: .05em;
-      transition: background .2s;
-    }
+    #contacto { background: var(--cream); border-top: 1px solid rgba(122,184,176,.25); }
+    .contacto-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contacto-info h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--berry); margin-bottom: 1.5rem; }
+    .info-row { display: flex; align-items: flex-start; gap: .85rem; margin-bottom: 1.1rem; }
+    .info-icon { font-size: 1.2rem; width: 2.2rem; height: 2.2rem; display: flex; align-items: center; justify-content: center; background: var(--warm); border-radius: 10px; flex-shrink: 0; }
+    .info-label { font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); margin-bottom: .15rem; }
+    .info-value { font-size: .9rem; color: var(--text); line-height: 1.5; }
+    .contacto-map { border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(122,184,176,.3); min-height: 280px; background: var(--warm); }
+    .contacto-map iframe { width: 100%; height: 280px; border: none; display: block; }
+    .map-link { display: flex; align-items: center; justify-content: center; gap: .4rem; padding: .7rem; background: var(--mint-dark); color: var(--white); text-decoration: none; font-size: .8rem; font-weight: 500; letter-spacing: .05em; transition: background .2s; }
     .map-link:hover { background: var(--coral); }
-
-    /* ===== SOCIAL ===== */
-    .social-links {
-      display: flex;
-      gap: .75rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .4rem;
-      padding: .45rem 1rem;
-      border-radius: 100px;
-      background: var(--warm);
-      color: var(--mint-dark);
-      text-decoration: none;
-      font-size: .8rem;
-      font-weight: 500;
-      transition: background .2s, transform .15s;
-      border: 1px solid var(--blush);
-    }
+    .social-links { display: flex; gap: .75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .social-link { display: flex; align-items: center; justify-content: center; gap: .4rem; padding: .45rem 1rem; border-radius: 100px; background: var(--warm); color: var(--mint-dark); text-decoration: none; font-size: .8rem; font-weight: 500; transition: background .2s, transform .15s; border: 1px solid var(--blush); }
     .social-link:hover { background: var(--coral); color: var(--white); transform: translateY(-2px); border-color: var(--coral); }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--chocolate);
-      color: rgba(255,255,255,.55);
-      text-align: center;
-      padding: 2rem;
-      font-size: .8rem;
-      letter-spacing: .04em;
-    }
+    footer { background: var(--chocolate); color: rgba(255,255,255,.55); text-align: center; padding: 2rem; font-size: .8rem; letter-spacing: .04em; }
     footer strong { color: rgba(255,255,255,.8); }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
     footer a:hover { color: var(--cream); }
-
-    /* ===== WHATSAPP FAB ===== */
-    .whatsapp-fab {
-      position: fixed;
-      bottom: 1.8rem;
-      right: 1.8rem;
-      z-index: 200;
-      width: 54px; height: 54px;
-      background: #25d366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(37,211,102,.4);
-      transition: transform .2s, box-shadow .2s;
-    }
+    .whatsapp-fab { position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 200; width: 54px; height: 54px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; text-decoration: none; box-shadow: 0 6px 24px rgba(37,211,102,.4); transition: transform .2s, box-shadow .2s; }
     .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,.55); }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       nav { padding: 0 1.5rem; }
       .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid var(--blush); gap: 1rem; }
@@ -664,16 +139,13 @@
 </head>
 <body>
 
-  <!-- WHATSAPP FAB -->
   <a href="https://wa.me/34639729550?text=Hola,%20quería%20consultar%20algo%20sobre%20la%20Heladería%20Kigo´s" class="whatsapp-fab" target="_blank" title="Escríbenos por WhatsApp">💬</a>
 
-  <!-- BANNER PRÓXIMA APERTURA -->
   <div class="pronto-banner">
     ✨ ¡Próxima apertura en Villafranca de los Caballeros! — ¿Conoces nuestro bar?
     <a href="http://bar-kigos.netlify.app/" target="_blank">Visita Bar Kigo's →</a>
   </div>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="#inicio" class="nav-logo">Heladería <span>Kigo's</span></a>
     <button class="nav-burger" id="burger" aria-label="Menú">
@@ -688,13 +160,11 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section id="inicio">
     <span class="hero-deco">🍦</span>
     <span class="hero-deco">🍧</span>
     <span class="hero-deco">🍨</span>
     <span class="hero-deco">🧁</span>
-
     <p class="hero-eyebrow">Heladería artesanal · Villafranca de los Caballeros · 2026</p>
     <h1 class="hero-title">Heladería Kigo's<br/><em>tu capricho</em><br/>del verano</h1>
     <p class="hero-sub">Helados artesanales elaborados cada día con ingredientes naturales. Sabores que te transportan al paraíso, bocado a bocado.</p>
@@ -704,7 +174,6 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section id="features">
     <div class="features-grid">
       <div class="feature-item reveal">
@@ -725,15 +194,12 @@
     </div>
   </section>
 
-  <!-- CARTA -->
   <section id="carta">
     <div class="section-header reveal">
       <span class="section-eyebrow">🍦 Lo que ofrecemos</span>
       <h2 class="section-title">Nuestra <em>Carta</em></h2>
       <p class="section-desc">Helados artesanales elaborados a diario con los mejores ingredientes. ¡Ven y elige tu favorito!</p>
     </div>
-
-    <!-- HELADOS DE CREMA -->
     <div class="menu-section reveal">
       <div class="menu-section-title">🍨 Helados de crema</div>
       <div class="sabores-grid">
@@ -755,8 +221,6 @@
         <div class="sabor-chip"><span class="sabor-emoji">🥭</span><span class="sabor-name">Mango con piña</span></div>
       </div>
     </div>
-
-    <!-- SORBETES -->
     <div class="menu-section reveal">
       <div class="menu-section-title">🍋 Sorbetes</div>
       <div class="sabores-grid">
@@ -764,8 +228,6 @@
         <div class="sabor-chip"><span class="sabor-emoji">🍊</span><span class="sabor-name">Sorbete de mandarina</span></div>
       </div>
     </div>
-
-    <!-- POLOS -->
     <div class="menu-section reveal">
       <div class="menu-section-title">🧊 Polos</div>
       <div class="sabores-grid">
@@ -776,8 +238,6 @@
         <div class="sabor-chip"><span class="sabor-emoji">🍓</span><span class="sabor-name">Fresa</span></div>
       </div>
     </div>
-
-    <!-- GRANIZADOS -->
     <div class="menu-section reveal">
       <div class="menu-section-title">🧃 Granizados</div>
       <div class="sabores-grid">
@@ -785,8 +245,6 @@
         <div class="sabor-chip"><span class="sabor-emoji">🍋</span><span class="sabor-name">Limón</span></div>
       </div>
     </div>
-
-    <!-- INFANTIL -->
     <div class="menu-section reveal">
       <div class="menu-section-title">👧 Infantil</div>
       <div class="sabores-grid">
@@ -794,10 +252,8 @@
         <div class="sabor-chip"><span class="sabor-emoji">🎉</span><span class="sabor-name">Xupi niños</span></div>
       </div>
     </div>
-
   </section>
 
-  <!-- ABOUT -->
   <section id="nosotros">
     <div class="about-content reveal">
       <p class="about-eyebrow">🍦 Nuestra historia</p>
@@ -805,12 +261,9 @@
       <p class="about-text">Los mismos dueños del Bar Kigo's, referente en Villafranca de los Caballeros, traemos ahora nuestra pasión por el buen producto a una heladería artesanal. La misma plaza, la misma familia, sabores nuevos que te esperan este verano.</p>
       <a href="http://bar-kigos.netlify.app/" target="_blank" class="about-bar-link">🍺 Visita también el Bar Kigo's →</a>
     </div>
-    <div class="about-visual">
-      <span>🍦</span>
-    </div>
+    <div class="about-visual"><span>🍦</span></div>
   </section>
 
-  <!-- CONTACTO -->
   <section id="contacto">
     <div class="section-header reveal">
       <span class="section-eyebrow">📍 Dónde estamos</span>
@@ -847,32 +300,18 @@
             <div class="info-value"><a href="http://bar-kigos.netlify.app/" target="_blank" style="color:var(--coral);text-decoration:none;">bar-kigos.netlify.app</a></div>
           </div>
         </div>
-
         <div class="social-links">
-          <a href="https://www.instagram.com/kigosbar/" target="_blank" class="social-link">📸 Instagram</a>
+          <a href="https://www.instagram.com/kigos.heladosyfrappes/" target="_blank" class="social-link">📸 Instagram</a>
           <a href="https://www.facebook.com/885063024685360?ref=PROFILE_EDIT_xav_ig_profile_page_web" target="_blank" class="social-link">👍 Facebook</a>
         </div>
       </div>
-
       <div class="contacto-map reveal">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3068.0!2d-3.3672!3d39.6897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDQxJzIyLjkiTiAzwrAyMic0Mi4yIlc!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses&q=Avenida+de+Castilla-La+Mancha,+1,+Villafranca+de+los+Caballeros,+45730"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación Heladería Kigo's">
-        </iframe>
-        <a
-          href="https://maps.google.com/?q=Avenida+de+Castilla-La+Mancha,+1,+Villafranca+de+los+Caballeros,+45730"
-          target="_blank"
-          class="map-link">
-          📍 Abrir en Google Maps →
-        </a>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3068.0!2d-3.3672!3d39.6897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDQxJzIyLjkiTiAzwrAyMic0Mi4yIlc!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses&q=Avenida+de+Castilla-La+Mancha,+1,+Villafranca+de+los+Caballeros,+45730" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Heladería Kigo's"></iframe>
+        <a href="https://maps.google.com/?q=Avenida+de+Castilla-La+Mancha,+1,+Villafranca+de+los+Caballeros,+45730" target="_blank" class="map-link">📍 Abrir en Google Maps →</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2026 <strong>Heladería Kigo's</strong> · Avda. de Castilla-La Mancha, 1 · Villafranca de los Caballeros, Toledo · 
     <a href="tel:+34639729550">639 729 550</a> · 
@@ -881,27 +320,15 @@
 
   <script>
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    });
-
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
     const burger = document.getElementById('burger');
     const navlinks = document.getElementById('navlinks');
-    burger.addEventListener('click', () => {
-      navlinks.classList.toggle('open');
-    });
-    navlinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navlinks.classList.remove('open'));
-    });
-
+    burger.addEventListener('click', () => { navlinks.classList.toggle('open'); });
+    navlinks.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => navlinks.classList.remove('open')); });
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = (i * 0.05) + 's';
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.style.transitionDelay = (i * 0.05) + 's'; entry.target.classList.add('visible'); observer.unobserve(entry.target); }
       });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
